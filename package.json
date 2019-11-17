@@ -2,10 +2,15 @@
   "name": "no-name",
   "license": "UNLICENSED",
   "dependencies": {
+    "@em-polymer/google-map": "^3.0.0-pre.5",
+    "@google-web-components/google-apis": "^3.0.1",
+    "@google/maps": "^1.0.2",
+    "@polymer/iron-jsonp-library": "^3.0.1",
     "@polymer/polymer": "3.2.0",
     "@vaadin/flow-deps": "./target/frontend",
     "@vaadin/vaadin-login": "^1.0.1",
-    "@webcomponents/webcomponentsjs": "^2.2.10"
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "google-map-marker": "^1.2.3"
   },
   "devDependencies": {
     "webpack": "4.30.0",

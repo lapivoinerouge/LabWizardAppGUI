@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@PageTitle("Dashboard")
+@PageTitle("Moje konto")
 @Route(value = "patient/dashboard")
 public class PatientDashboard extends VerticalLayout {
 

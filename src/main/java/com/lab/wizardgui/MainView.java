@@ -1,7 +1,7 @@
 package com.lab.wizardgui;
 
-import com.lab.wizardgui.views.components.main.UserZoneBar;
-import com.lab.wizardgui.views.components.main.divs.Details;
+import com.lab.wizardgui.views.main.components.UserZoneBar;
+import com.lab.wizardgui.views.main.components.divs.Details;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
