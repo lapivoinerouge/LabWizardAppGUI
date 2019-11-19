@@ -1,11 +1,7 @@
 package com.lab.wizardgui.views.dashboard.employee;
 
+import com.lab.wizardgui.views.dashboard.employee.components.DashboardShortcuts;
 import com.lab.wizardgui.views.dashboard.employee.components.EmployeeBar;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.contextmenu.MenuItem;
-import com.vaadin.flow.component.contextmenu.SubMenu;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -18,6 +14,9 @@ public class EmployeeDashboard extends VerticalLayout {
 
     public EmployeeDashboard() {
         EmployeeBar bar = new EmployeeBar();
-        add(bar);
+
+        DashboardShortcuts shortcuts = new DashboardShortcuts();
+
+        add(bar, shortcuts);
     }
 }

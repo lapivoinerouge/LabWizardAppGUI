@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -27,4 +28,12 @@ public class UndoneResultDto {
     private String material;
     @JsonProperty("receiveDate")
     private LocalDate receiveDate;
+
+    public UndoneResultDto(String firstname, String lastname, String pesel, String material) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pesel = pesel;
+        this.material = material;
+        this.receiveDate = LocalDate.now();
+    }
 }

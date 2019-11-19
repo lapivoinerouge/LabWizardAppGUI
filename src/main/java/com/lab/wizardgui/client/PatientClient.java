@@ -10,6 +10,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PatientClient {
@@ -31,6 +32,42 @@ public class PatientClient {
         return new ArrayList<>();
     }
 
+    public List<PatientDto> findPatientsByLastname(String lastname) {
+
+        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients")
+                .queryParam("fields", "id,firstname,lastname,pesel,email,password")
+                .build().encode().toUri();
+
+        PatientDto[] response = restTemplate.getForObject(url, PatientDto[].class);
+
+        List<PatientDto> list = Arrays.stream(response)
+                .filter(patientDto -> patientDto.getLastname().contains(lastname))
+                .collect(Collectors.toList());
+
+        if (list != null) {
+            return list;
+        }
+        return new ArrayList<>();
+    }
+
+//    public PatientDto getPatientByPesel(String pesel) {
+//
+//        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients")
+//                .queryParam("fields", "id,firstname,lastname,pesel,email,password")
+//                .build().encode().toUri();
+//
+//        PatientDto[] response = restTemplate.getForObject(url, PatientDto[].class);
+//
+//        List<PatientDto> list = Arrays.stream(response)
+//                .filter(patientDto -> patientDto.getLastname().equals(pesel))
+//                .collect(Collectors.toList());
+//
+//        if (list != null) {
+//            return list.get(0);
+//        }
+//        return null;
+//    }
+
     public PatientDto getPatient(Long id) {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients/" + id)
@@ -51,6 +88,14 @@ public class PatientClient {
                 .build().encode().toUri();
 
         return restTemplate.postForObject(url, patientDto, PatientDto.class);
+    }
+
+    public void editPatient(PatientDto patientDto) {
+
+        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients/")
+                .build().encode().toUri();
+
+        restTemplate.put(url, patientDto);
     }
 
     public void deletePatient(Long id) {

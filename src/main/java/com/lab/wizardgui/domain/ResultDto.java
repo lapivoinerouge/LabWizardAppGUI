@@ -38,6 +38,19 @@ public class ResultDto {
     @JsonProperty("finishDate")
     private LocalDate finishDate;
 
+    public ResultDto(Long undoneId, String firstname, String lastname, String pesel, String material, LocalDate receiveDate, String result, String comment) {
+        this.undoneId = undoneId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pesel = pesel;
+        this.material = material;
+        this.receiveDate = receiveDate;
+        this.result = result;
+        this.comment = comment;
+        this.employeeLicence = "2345";
+        this.finishDate = LocalDate.now();
+    }
+
     public String getFirstname() {
         return firstname;
     }

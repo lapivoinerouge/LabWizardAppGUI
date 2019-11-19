@@ -53,6 +53,14 @@ public class UndoneResultClient {
         return restTemplate.postForObject(url, undoneResultDto, UndoneResultDto.class);
     }
 
+    public void editUndone(UndoneResultDto undoneResultDto) {
+
+        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/undone/")
+                .build().encode().toUri();
+
+        restTemplate.put(url, undoneResultDto);
+    }
+
     public void deleteUndone(Long id) {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/undone/" + id)
