@@ -24,8 +24,6 @@ public class LaboratoryForm extends FormLayout {
     private TextField pesel = new TextField("Pesel");
     @PropertyId("material")
     private TextField material = new TextField("Materiał");
-//    @PropertyId("receiveDate")
-//    private DateField receiveDate = new DateField("Data pobrania materiału");
     @PropertyId("result")
     private TextField result = new TextField("Wynik");
     @PropertyId("comment")
@@ -41,15 +39,12 @@ public class LaboratoryForm extends FormLayout {
         lastname.setReadOnly(true);
         pesel.setReadOnly(true);
         material.setReadOnly(true);
-//        receiveDate.setReadOnly(true);
 
-
-        Button save = new Button("Zapisz", e -> save(resultClient, undoneResultClient, laboratory));
+        Button save = new Button("Zapisz", e -> save(resultClient, laboratory));
         Button clear = new Button("Wyczyść", e -> binder.setBean(null));
-//        Button edit = new Button("Edytuj zlecenie", e -> edit());
-//        Button delete = new Button("Usuń zlecenie", e -> delete(undoneResultClient, laboratory));
+        Button delete = new Button("Usuń zlecenie", e -> delete(undoneResultClient, laboratory));
         save.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
-//        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout buttons = new HorizontalLayout(save, clear);
 
         add(new H3("Wydawanie wyniku:"), firstname, lastname, pesel, material, result, comment, buttons);
@@ -59,7 +54,7 @@ public class LaboratoryForm extends FormLayout {
         binder.bindInstanceFields(this);
     }
 
-    public void save(ResultClient resultClient, UndoneResultClient undoneResultClient, Laboratory laboratory) {
+    public void save(ResultClient resultClient, Laboratory laboratory) {
         UndoneResultDto undoneResultDto = binder.getBean();
         ResultDto resultDto = new ResultDto(
                 undoneResultDto.getId(),
@@ -72,6 +67,13 @@ public class LaboratoryForm extends FormLayout {
                 comment.getValue());
         resultClient.createResult(resultDto);
         laboratory.resultAdded();
+    }
+
+    public void delete(UndoneResultClient undoneResultClient, Laboratory laboratory) {
+        UndoneResultDto undoneResultDto = binder.getBean();
+        undoneResultClient.deleteUndone(undoneResultDto.getId());
+        laboratory.refresh(undoneResultClient);
+        laboratory.resultDeleted();
     }
 
     public void setResult(UndoneResultDto undoneResultDto) {

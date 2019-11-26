@@ -24,18 +24,12 @@ public class ResultsBase extends VerticalLayout {
     public ResultsBase(@Autowired ResultClient client) {
 
         EmployeeBar employeeBar = new EmployeeBar();
-//        Button delete = new Button("Usuń", event -> delete(client));
-//        employeeBar.add(delete);
-//        delete.getStyle().set("margin-left", "690px");
-//        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-
         grid.setWidthFull();
         grid.setHeight("300px");
         grid.addThemeVariants(GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
 
         refresh(client);
 
-//        grid.addColumn(ResultDto::getUndoneId).setHeader("nr zlecenia");
         grid.addColumn(ResultDto::getFirstname).setHeader("imię");
         grid.addColumn(ResultDto::getLastname).setHeader("nazwisko");
         grid.addColumn(ResultDto::getPesel).setHeader("pesel");

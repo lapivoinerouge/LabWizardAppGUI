@@ -62,4 +62,10 @@ public class Laboratory extends VerticalLayout {
         notification.open();
     }
 
+    public void resultDeleted() {
+        Notification notification = new Notification("Wynik został usunięty", 3000);
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        notification.setPosition(Notification.Position.MIDDLE);
+        notification.open();
+    }
 }

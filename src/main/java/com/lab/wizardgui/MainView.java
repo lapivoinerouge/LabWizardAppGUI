@@ -15,8 +15,8 @@ public class MainView extends VerticalLayout {
         UserZoneBar userZoneBar = new UserZoneBar();
 
         Image logo = new Image("https://imgur.com/hwoqQay.png", "Logo");
-        logo.setWidth("500px");
-        logo.setHeight("200px");
+        logo.setWidth("300px");
+        logo.setHeight("150px");
         setHorizontalComponentAlignment(Alignment.END, logo);
 
         Details details = new Details(rateClient);

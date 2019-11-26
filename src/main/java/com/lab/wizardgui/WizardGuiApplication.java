@@ -9,5 +9,4 @@ public class WizardGuiApplication {
     public static void main(String[] args) {
         SpringApplication.run(WizardGuiApplication.class, args);
     }
-
 }

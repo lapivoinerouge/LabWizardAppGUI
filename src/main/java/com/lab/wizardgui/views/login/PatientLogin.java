@@ -9,5 +9,4 @@ public class PatientLogin extends MyLogin {
     public void navigate() {
         getUI().ifPresent(ui -> ui.navigate("patient/dashboard"));
     }
-
 }

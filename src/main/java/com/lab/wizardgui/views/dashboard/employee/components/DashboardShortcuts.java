@@ -11,15 +11,15 @@ public class DashboardShortcuts extends VerticalLayout {
 
     public DashboardShortcuts() {
 
-        EmployeeTile patients = new EmployeeTile("BAZA PACJENTÓW\n\n\n\nAby dodać pacjenta", new Icon(VaadinIcon.USERS), e -> getUI().ifPresent(ui -> ui.navigate("employee/patients")));
-        EmployeeTile registration = new EmployeeTile("REJESTRACJA blelevlelbv", new Icon(VaadinIcon.CLIPBOARD_CROSS), e -> getUI().ifPresent(ui -> ui.navigate("employee/registration")));
-        EmployeeTile laboratory = new EmployeeTile("LABORATORIUM vlvevlelve", new Icon(VaadinIcon.FLASK), e -> getUI().ifPresent(ui -> ui.navigate("employee/laboratory")));
-        EmployeeTile results = new EmployeeTile("WYNIKI blelbleleb", new Icon(VaadinIcon.CLIPBOARD_CHECK), e -> getUI().ifPresent(ui -> ui.navigate("employee/results")));
+        EmployeeTile patients = new EmployeeTile("BAZA PACJENTÓW", new Icon(VaadinIcon.USERS), e -> getUI().ifPresent(ui -> ui.navigate("employee/patients")));
+        EmployeeTile registration = new EmployeeTile("REJESTRACJA BADANIA", new Icon(VaadinIcon.CLIPBOARD_CROSS), e -> getUI().ifPresent(ui -> ui.navigate("employee/registration")));
+        EmployeeTile laboratory = new EmployeeTile("WYDAWANIE WYNIKÓW", new Icon(VaadinIcon.FLASK), e -> getUI().ifPresent(ui -> ui.navigate("employee/laboratory")));
+        EmployeeTile results = new EmployeeTile("BAZA WYNIKÓW", new Icon(VaadinIcon.CLIPBOARD_CHECK), e -> getUI().ifPresent(ui -> ui.navigate("employee/results")));
 
-        patients.getStyle().set("background-color", "#4994e5");
-        registration.getStyle().set("background-color", "#e6eb67");
-        laboratory.getStyle().set("background-color", "#30a868");
-        results.getStyle().set("background-color", "#933055");
+        patients.getStyle().set("background-image", "url(https://images.pexels.com/photos/261152/pexels-photo-261152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)");
+        registration.getStyle().set("background-image", "url(https://images.pexels.com/photos/1122864/pexels-photo-1122864.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)");
+        laboratory.getStyle().set("background-image", "url(https://images.pexels.com/photos/446462/pexels-photo-446462.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)");
+        results.getStyle().set("background-image", "url(https://images.pexels.com/photos/236950/pexels-photo-236950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)");
 
         HorizontalLayout row1 = new HorizontalLayout(patients, registration);
         HorizontalLayout row2 = new HorizontalLayout(laboratory, results);

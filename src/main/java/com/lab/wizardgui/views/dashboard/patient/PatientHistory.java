@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Route(value = "patient/history")
 public class PatientHistory extends VerticalLayout {
 
+    //pesel stub to personalize result window
     private String pesel = "456789";
 
     public PatientHistory(@Autowired ResultClient resultClient) {

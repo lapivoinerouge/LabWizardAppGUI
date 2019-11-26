@@ -22,7 +22,7 @@ public class EmployeeBar extends HorizontalLayout {
 
         getStyle().set("margin-left", "15px");
         add(patients, registration, laboratory, results, calendar, back, main, logout);
-        back.getStyle().set("margin-left", "440px");
+        back.getStyle().set("margin-left", "430px");
         back.getStyle().set("margin-right", "0px");
         main.getStyle().set("margin-left", "2px");
         logout.getStyle().set("margin-left", "2px");

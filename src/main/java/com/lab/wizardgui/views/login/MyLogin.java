@@ -21,10 +21,9 @@ public class MyLogin extends VerticalLayout {
                 login.setError(true);
             }
         });
-
     }
 
-    //mock to test
+    //authenticated
     private boolean authenticate(AbstractLogin.LoginEvent e) {
         return true;
     }
@@ -37,8 +36,8 @@ public class MyLogin extends VerticalLayout {
         final LoginI18n i18n = LoginI18n.createDefault();
 
         i18n.setHeader(new LoginI18n.Header());
-        i18n.getHeader().setTitle("?????????????");
-        i18n.getHeader().setDescription("????????????");
+        i18n.getHeader().setTitle("Login");
+        i18n.getHeader().setDescription("Login");
         i18n.getForm().setTitle("Logowanie do systemu");
         i18n.getForm().setUsername("Login");
         i18n.getForm().setPassword("Hasło");
@@ -47,7 +46,7 @@ public class MyLogin extends VerticalLayout {
         i18n.getErrorMessage().setTitle("Błąd logowania");
         i18n.getErrorMessage().setMessage("Login lub hasło nieprawidłowe.");
         i18n.setAdditionalInformation(
-                "Dodatkowe informacje.......");
+                "Aby przejść dalej dowolnie wypełnij oba pola.");
         return i18n;
     }
 }
