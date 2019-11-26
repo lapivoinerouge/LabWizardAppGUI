@@ -28,6 +28,8 @@ public class UndoneResultDto {
     private String material;
     @JsonProperty("receiveDate")
     private LocalDate receiveDate;
+    @JsonProperty("done")
+    private boolean done;
 
     public UndoneResultDto(String firstname, String lastname, String pesel, String material) {
         this.firstname = firstname;
@@ -35,5 +37,6 @@ public class UndoneResultDto {
         this.pesel = pesel;
         this.material = material;
         this.receiveDate = LocalDate.now();
+        this.done = false;
     }
 }

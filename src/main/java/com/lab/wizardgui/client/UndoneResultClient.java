@@ -10,6 +10,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UndoneResultClient {
@@ -20,13 +21,18 @@ public class UndoneResultClient {
     public List<UndoneResultDto> getAllUndone() {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/undone")
-                .queryParam("fields", "id,firstname,lastname,pesel,material,receiveDate")
+                .queryParam("fields", "id,firstname,lastname,pesel,material,receiveDate,done")
                 .build().encode().toUri();
 
         UndoneResultDto[] response = restTemplate.getForObject(url, UndoneResultDto[].class);
 
         if (response != null) {
-            return Arrays.asList(response);
+
+            List<UndoneResultDto> undone = Arrays.stream(response)
+                    .filter(u -> !u.isDone())
+                    .collect(Collectors.toList());
+
+            return undone;
         }
         return new ArrayList<>();
     }
@@ -34,7 +40,7 @@ public class UndoneResultClient {
     public UndoneResultDto getUndone(Long id) {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/undone/" + id)
-                .queryParam("fields", "id,firstname,lastname,pesel,material,receiveDate")
+                .queryParam("fields", "id,firstname,lastname,pesel,material,receiveDate,done")
                 .build().encode().toUri();
 
         UndoneResultDto response = restTemplate.getForObject(url, UndoneResultDto.class);
@@ -68,5 +74,4 @@ public class UndoneResultClient {
 
         restTemplate.delete(url);
     }
-
 }

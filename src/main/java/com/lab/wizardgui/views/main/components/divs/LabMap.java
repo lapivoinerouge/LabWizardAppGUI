@@ -9,7 +9,7 @@ import com.vaadin.flow.component.html.Paragraph;
 
 public class LabMap extends Div {
 
-    private static final String API_KEY = "{apikey}";
+    private static final String API_KEY = "ENTER API KEY";
 
     public LabMap() {
         H3 title = new H3("Kontakt");

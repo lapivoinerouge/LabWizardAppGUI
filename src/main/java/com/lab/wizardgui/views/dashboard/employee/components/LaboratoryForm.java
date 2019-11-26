@@ -74,19 +74,6 @@ public class LaboratoryForm extends FormLayout {
         laboratory.resultAdded();
     }
 
-//    public void edit() {
-//        firstname.setReadOnly(false);
-//        lastname.setReadOnly(false);
-//        pesel.setReadOnly(false);
-//        material.setReadOnly(false);
-//    }
-
-//    public void delete(UndoneResultClient client, Laboratory laboratory) {
-//        UndoneResultDto undoneResultDto = binder.getBean();
-//        client.deleteUndone(undoneResultDto.getId());
-//        laboratory.refresh(client);
-//    }
-
     public void setResult(UndoneResultDto undoneResultDto) {
         binder.setBean(undoneResultDto);
     }

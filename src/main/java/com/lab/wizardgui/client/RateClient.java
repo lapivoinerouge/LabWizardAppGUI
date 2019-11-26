@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 @Component
 public class RateClient {
 
@@ -29,6 +30,21 @@ public class RateClient {
             return Arrays.asList(response);
         }
         return new ArrayList<>();
+    }
+
+    public double getAverageRate() {
+
+        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/rates")
+                .queryParam("fields", "id,name,rate,comment")
+                .build().encode().toUri();
+
+        RateDto[] response = restTemplate.getForObject(url, RateDto[].class);
+
+        Double avg = Arrays.stream(response)
+                .mapToDouble(rateDto -> rateDto.getRate())
+                .average().getAsDouble();
+
+        return Math.round(avg * 100.0) / 100.0;
     }
 
     public RateDto getRate(Long id) {

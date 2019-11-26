@@ -3,29 +3,28 @@ package com.lab.wizardgui.views.main.components.divs;
 import com.lab.wizardgui.client.RateClient;
 import com.lab.wizardgui.domain.RateDto;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
+import com.vaadin.flow.component.html.H4;
 
 public class Rating extends Div {
 
-    @Autowired
-    RateClient client;
+    private Grid<RateDto> grid = new Grid<>();
 
-    public Rating() {
+    public Rating(RateClient client) {
         H3 title = new H3("Co o nas mówią?");
-        Grid<RateDto> grid = new Grid<>();
+        H4 average = new H4("Średnia ocen: " + client.getAverageRate());
+
         grid.setWidthFull();
-        grid.setHeight("300px");
-        List<RateDto> rates = client.getAllRates();
-        grid.setItems(rates);
+        grid.setMinHeight("300px");
+        grid.addThemeVariants(GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
+        grid.setItems(client.getAllRates());
 
-        Grid.Column<RateDto> nameColumn = grid.addColumn(RateDto::getName).setHeader("imię");
-        Grid.Column<RateDto> rateColumn = grid.addColumn(RateDto::getRate).setHeader("ocena");
-        Grid.Column<RateDto> commentColumn = grid.addColumn(RateDto::getComment).setHeader("komentarz");
+        grid.addColumn(RateDto::getName).setHeader("imię");
+        grid.addColumn(RateDto::getRate).setHeader("ocena");
+        grid.addColumn(RateDto::getComment).setHeader("komentarz");
 
-        add(title, grid);
+        add(title, average, grid);
     }
 }

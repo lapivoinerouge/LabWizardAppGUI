@@ -1,5 +1,6 @@
 package com.lab.wizardgui.views.main.components.divs;
 
+import com.lab.wizardgui.client.RateClient;
 import com.lab.wizardgui.views.main.components.MainTabs;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -8,7 +9,7 @@ public class Details extends VerticalLayout {
 
     private Div div = new Div();
 
-    public Details() {
+    public Details(RateClient rateClient) {
 
         MainTabs mainTabs = new MainTabs();
         setHorizontalComponentAlignment(Alignment.END, mainTabs);
@@ -25,7 +26,7 @@ public class Details extends VerticalLayout {
                     preparation();
                     break;
                 case "Opinie pacjentów":
-                    rating();
+                    rating(rateClient);
                     break;
                 case "Kontakt":
                     contact();
@@ -52,9 +53,10 @@ public class Details extends VerticalLayout {
         div.add(new Preparation());
     }
 
-    public void rating() {
+    public void rating(RateClient rateClient) {
         div.removeAll();
-        // rate
+        div.add(new Rating(rateClient));
+        div.setSizeFull();
     }
 
     public void contact() {

@@ -50,24 +50,6 @@ public class PatientClient {
         return new ArrayList<>();
     }
 
-//    public PatientDto getPatientByPesel(String pesel) {
-//
-//        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients")
-//                .queryParam("fields", "id,firstname,lastname,pesel,email,password")
-//                .build().encode().toUri();
-//
-//        PatientDto[] response = restTemplate.getForObject(url, PatientDto[].class);
-//
-//        List<PatientDto> list = Arrays.stream(response)
-//                .filter(patientDto -> patientDto.getLastname().equals(pesel))
-//                .collect(Collectors.toList());
-//
-//        if (list != null) {
-//            return list.get(0);
-//        }
-//        return null;
-//    }
-
     public PatientDto getPatient(Long id) {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/lab/patients/" + id)

@@ -21,4 +21,10 @@ public class RateDto {
     private Long rate;
     @JsonProperty("comment")
     private String comment;
+
+    public RateDto(String name, Long rate, String comment) {
+        this.name = name;
+        this.rate = rate;
+        this.comment = comment;
+    }
 }
