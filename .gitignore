@@ -33,3 +33,6 @@ out/
 
 **/out/
 **/build/
+
+### NPM ###
+/node_modules/
