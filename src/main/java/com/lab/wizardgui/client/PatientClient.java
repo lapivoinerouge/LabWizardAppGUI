@@ -41,7 +41,7 @@ public class PatientClient {
         PatientDto[] response = restTemplate.getForObject(url, PatientDto[].class);
 
         List<PatientDto> list = Arrays.stream(response)
-                .filter(patientDto -> patientDto.getLastname().contains(lastname))
+                .filter(patientDto -> patientDto.getLastname().toLowerCase().contains(lastname.toLowerCase()))
                 .collect(Collectors.toList());
 
         if (list != null) {

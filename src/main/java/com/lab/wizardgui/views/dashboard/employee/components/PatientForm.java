@@ -12,27 +12,29 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.PropertyId;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.stream.Collectors;
+
 public class PatientForm extends FormLayout {
 
     @PropertyId("firstname")
-    private TextField firstname = new TextField("Imię");
+    private TextField firstname = new CustomTextField("Firstname");
     @PropertyId("lastname")
-    private TextField lastname = new TextField("Nazwisko");
+    private TextField lastname = new CustomTextField("Lastname");
     @PropertyId("pesel")
-    private TextField pesel = new TextField("Pesel");
+    private TextField pesel = new CustomTextField("Pesel number");
     @PropertyId("email")
-    private TextField email = new TextField("E-mail");
+    private TextField email = new CustomTextField("E-mail address");
     @PropertyId("password")
-    private TextField password = new TextField("Hasło");
+    private TextField password = new CustomTextField("Password");
 
     private Binder<PatientDto> binder = new Binder<>(PatientDto.class);
 
     public PatientForm(@Autowired PatientClient client, PatientsBase base) {
 
-        getStyle().set("padding-top", "120px");
+        getStyle().set("padding-top", "100px");
 
-        Button save = new Button("Zapisz", e -> save(client, base));
-        Button clear = new Button("Wyczyść", e -> {
+        Button save = new Button("Save", e -> save(client, base));
+        Button clear = new Button("Clear", e -> {
             binder.setBean(null);
             firstname.clear();
             lastname.clear();
@@ -40,10 +42,11 @@ public class PatientForm extends FormLayout {
             email.clear();
             password.clear();
         });
-        Button delete = new Button("Usuń", e -> delete(client, base));
+        Button delete = new Button("Delete", e -> delete(client, base));
         save.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout buttons = new HorizontalLayout(save, clear, delete);
+        buttons.getStyle().set("padding-top", "20px");
 
         add(firstname, lastname, pesel, email, password, buttons);
         setMaxHeight("500px");
@@ -59,14 +62,19 @@ public class PatientForm extends FormLayout {
             client.editPatient(patientDto);
             base.patientEdited();
         } else {
-            patientDto = new PatientDto(
-                    firstname.getValue(),
-                    lastname.getValue(),
-                    pesel.getValue(),
-                    email.getValue(),
-                    password.getValue());
-            client.createNewPatient(patientDto);
-            base.patientAdded();
+            if (!binder.getFields().anyMatch(f -> f.getValue().equals(""))) {
+                patientDto = new PatientDto(
+                        firstname.getValue(),
+                        lastname.getValue(),
+                        pesel.getValue(),
+                        email.getValue(),
+                        password.getValue());
+                client.createNewPatient(patientDto);
+                base.patientAdded();
+            } else {
+                String emptyFields = binder.getFields().filter(f -> f.getValue().equals("")).map(f -> f.toString()).collect(Collectors.joining(", "));
+                base.invalidPatientData(emptyFields);
+            }
         }
         base.refresh(client);
     }

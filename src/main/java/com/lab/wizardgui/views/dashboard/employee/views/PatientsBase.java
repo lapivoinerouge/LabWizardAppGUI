@@ -32,7 +32,7 @@ public class PatientsBase extends VerticalLayout {
         base.setWidth("60%");
 
         TextField filterByLastname = new TextField();
-        filterByLastname.setPlaceholder("Szukaj po nazwisku...");
+        filterByLastname.setPlaceholder("Search");
         filterByLastname.getStyle().set("font-size", "12px");
         filterByLastname.setClearButtonVisible(true);
         filterByLastname.setValueChangeMode(ValueChangeMode.EAGER);
@@ -40,15 +40,17 @@ public class PatientsBase extends VerticalLayout {
         grid.setWidthFull();
         grid.addThemeVariants(GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
 
-        Grid.Column<PatientDto> firstnameColumn = grid.addColumn(PatientDto::getFirstname).setHeader("imię");
-        Grid.Column<PatientDto> lastnameColumn = grid.addColumn(PatientDto::getLastname).setHeader("nazwisko");
+        Grid.Column<PatientDto> firstnameColumn = grid.addColumn(PatientDto::getFirstname).setHeader("firstname");
+        Grid.Column<PatientDto> lastnameColumn = grid.addColumn(PatientDto::getLastname).setHeader("lastname");
         Grid.Column<PatientDto> peselColumn = grid.addColumn(PatientDto::getPesel).setHeader("pesel");
         Grid.Column<PatientDto> emailColumn = grid.addColumn(PatientDto::getEmail).setHeader("email");
         refresh(client);
 
         filterByLastname.addValueChangeListener(event -> grid.setItems(client.findPatientsByLastname(filterByLastname.getValue())));
 
-        base.add(new H2("Baza pacjentów"), filterByLastname, grid);
+        H2 title = new H2("Patient registry");
+
+        base.add(title, filterByLastname, grid);
 
         PatientForm form = new PatientForm(client, this);
         form.setWidth("35%");
@@ -65,21 +67,28 @@ public class PatientsBase extends VerticalLayout {
     }
 
     public void patientAdded() {
-        Notification notification = new Notification("Pacjent został dodany do bazy.", 3000);
+        Notification notification = new Notification("New patient has been registered.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();
     }
 
+    public void invalidPatientData(String fields) {
+        Notification notification = new Notification("Fields: " + fields + " cannot be empty.", 3000);
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        notification.setPosition(Notification.Position.MIDDLE);
+        notification.open();
+    }
+
     public void patientEdited() {
-        Notification notification = new Notification("Zmiany zostały zapisane.", 3000);
+        Notification notification = new Notification("Changes have been saved succesfully.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();
     }
 
     public void patientDeleted() {
-        Notification notification = new Notification("Pacjent został usunięty.", 3000);
+        Notification notification = new Notification("Patient has been removed from database.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();
