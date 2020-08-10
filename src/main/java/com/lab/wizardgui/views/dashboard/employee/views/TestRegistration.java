@@ -30,7 +30,7 @@ public class TestRegistration extends VerticalLayout {
         VerticalLayout base = new VerticalLayout();
 
         TextField filterByLastname = new TextField();
-        filterByLastname.setPlaceholder("Szukaj po nazwisku...");
+        filterByLastname.setPlaceholder("Search");
         filterByLastname.getStyle().set("font-size", "12px");
         filterByLastname.setClearButtonVisible(true);
         filterByLastname.setValueChangeMode(ValueChangeMode.EAGER);
@@ -39,16 +39,16 @@ public class TestRegistration extends VerticalLayout {
         grid.setMaxHeight("280px");
         grid.addThemeVariants(GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
 
-        grid.addColumn(PatientDto::getFirstname).setHeader("imię");
-        grid.addColumn(PatientDto::getLastname).setHeader("nazwisko");
+        grid.addColumn(PatientDto::getFirstname).setHeader("firstname");
+        grid.addColumn(PatientDto::getLastname).setHeader("lastname");
         grid.addColumn(PatientDto::getPesel).setHeader("pesel");
         grid.setItems(patientClient.getAllPatients());
 
         filterByLastname.addValueChangeListener(event -> grid.setItems(patientClient.findPatientsByLastname(filterByLastname.getValue())));
 
-        base.add(new H2("Rejestracja badania"), new H3("Wybierz pacjenta z listy:"), filterByLastname, grid);
+        base.add(new H2("Test Registry"), new H3("Select a patient from the list below to register tests:"), filterByLastname, grid);
 
-        UndoneResultForm form = new UndoneResultForm(undoneResultClient, this, patientClient);
+        UndoneResultForm form = new UndoneResultForm(undoneResultClient, this);
         grid.asSingleSelect().addValueChangeListener(e ->
             form.setUndone(grid.asSingleSelect().getValue()));
 
@@ -58,7 +58,7 @@ public class TestRegistration extends VerticalLayout {
     }
 
     public void testRegistered() {
-        Notification notification = new Notification("Badanie zostało zarejestrowane.", 3000);
+        Notification notification = new Notification("Test has been registered.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();

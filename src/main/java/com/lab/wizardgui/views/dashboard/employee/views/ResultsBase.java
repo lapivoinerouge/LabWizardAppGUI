@@ -30,23 +30,23 @@ public class ResultsBase extends VerticalLayout {
 
         refresh(client);
 
-        grid.addColumn(ResultDto::getFirstname).setHeader("imię");
-        grid.addColumn(ResultDto::getLastname).setHeader("nazwisko");
+        grid.addColumn(ResultDto::getFirstname).setHeader("firstname");
+        grid.addColumn(ResultDto::getLastname).setHeader("lastname");
         grid.addColumn(ResultDto::getPesel).setHeader("pesel");
-        grid.addColumn(ResultDto::getMaterial).setHeader("materiał");
-        grid.addColumn(ResultDto::getReceiveDate).setHeader("pobrano");
-        grid.addColumn(ResultDto::getResult).setHeader("wynik");
-        grid.addColumn(ResultDto::getComment).setHeader("komentarz");
-        grid.addColumn(ResultDto::getEmployeeLicence).setHeader("wykonał(a)");
-        grid.addColumn(ResultDto::getFinishDate).setHeader("zakończono");
+        grid.addColumn(ResultDto::getMaterial).setHeader("material");
+        grid.addColumn(ResultDto::getReceiveDate).setHeader("received");
+        grid.addColumn(ResultDto::getResult).setHeader("result");
+        grid.addColumn(ResultDto::getComment).setHeader("comment");
+        grid.addColumn(ResultDto::getEmployeeLicence).setHeader("authorized by");
+        grid.addColumn(ResultDto::getFinishDate).setHeader("released");
 
         grid.asSingleSelect().addValueChangeListener(e -> binder.setBean(grid.asSingleSelect().getValue()));
 
-        Button delete = new Button("Usuń", e -> delete(client));
+        Button delete = new Button("Delete", e -> delete(client));
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         setHorizontalComponentAlignment(Alignment.END, delete);
 
-        add(employeeBar, new H3("Lista wyników"), grid, delete);
+        add(employeeBar, new H3("Results"), grid, delete);
     }
 
     public void refresh(ResultClient client) {
@@ -61,7 +61,7 @@ public class ResultsBase extends VerticalLayout {
     }
 
     public void resultDeleted() {
-        Notification notification = new Notification("Wynik został usunięty", 3000);
+        Notification notification = new Notification("Result has been deleted successfully", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();

@@ -20,24 +20,24 @@ public class Shifts extends VerticalLayout {
 
         EmployeeBar bar = new EmployeeBar();
 
-        H3 title = new H3("Zarządzaj kalendarzem");
+        H3 title = new H3("Manage shifts");
 
         Iframe calendar = new Iframe("https://calendar.google.com/calendar/embed?src=vjqiss4v2deaig60dqgbe053qk%40group.calendar.google.com&ctz=Europe%2FWarsaw");
         calendar.setHeight("500px");
         calendar.setWidth("800px");
 
-        DatePicker date = new DatePicker("Dzień:");
+        DatePicker date = new DatePicker("Date:");
         date.setClearButtonVisible(true);
 
-        TimePicker time1 = new TimePicker("Godzina rozpoczęcia:");
+        TimePicker time1 = new TimePicker("Start hour:");
         date.setClearButtonVisible(true);
 
-        TimePicker time2 = new TimePicker("Godzina zakończenia:");
+        TimePicker time2 = new TimePicker("End hour:");
         date.setClearButtonVisible(true);
 
-        TextField summary = new TextField("Nazwa wydarzenia:");
+        TextField summary = new TextField("Event name:");
 
-        Button submit = new Button("Wyślij", event -> client.createNewEvent(summary.getValue(), date.getValue(), time1.getValue(), time2.getValue()));
+        Button submit = new Button("Send", event -> client.createNewEvent(summary.getValue(), date.getValue(), time1.getValue(), time2.getValue()));
 
         HorizontalLayout bar1 = new HorizontalLayout(summary, date);
         HorizontalLayout bar2 = new HorizontalLayout(time1, time2);

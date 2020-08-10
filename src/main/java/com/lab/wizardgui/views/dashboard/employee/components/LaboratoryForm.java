@@ -17,17 +17,17 @@ import com.vaadin.flow.data.binder.PropertyId;
 public class LaboratoryForm extends FormLayout {
 
     @PropertyId("firstname")
-    private TextField firstname = new TextField("Imię");
+    private TextField firstname = new TextField("Firstname");
     @PropertyId("lastname")
-    private TextField lastname = new TextField("Nazwisko");
+    private TextField lastname = new TextField("Lastname");
     @PropertyId("pesel")
     private TextField pesel = new TextField("Pesel");
     @PropertyId("material")
-    private TextField material = new TextField("Materiał");
+    private TextField material = new TextField("Material");
     @PropertyId("result")
-    private TextField result = new TextField("Wynik");
+    private TextField result = new TextField("Result");
     @PropertyId("comment")
-    private TextField comment = new TextField("Komentarz");
+    private TextField comment = new TextField("Comment");
 
     private Binder<UndoneResultDto> binder = new Binder<>(UndoneResultDto.class);
 
@@ -40,14 +40,14 @@ public class LaboratoryForm extends FormLayout {
         pesel.setReadOnly(true);
         material.setReadOnly(true);
 
-        Button save = new Button("Zapisz", e -> save(resultClient, laboratory));
-        Button clear = new Button("Wyczyść", e -> binder.setBean(null));
-        Button delete = new Button("Usuń zlecenie", e -> delete(undoneResultClient, laboratory));
+        Button save = new Button("Save", e -> save(resultClient, laboratory));
+        Button clear = new Button("Clear", e -> binder.setBean(null));
+        Button delete = new Button("Delete test", e -> delete(undoneResultClient, laboratory));
         save.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout buttons = new HorizontalLayout(save, clear);
 
-        add(new H3("Wydawanie wyniku:"), firstname, lastname, pesel, material, result, comment, buttons);
+        add(new H3("Release a result:"), firstname, lastname, pesel, material, result, comment, buttons);
         setMaxHeight("500px");
         setMaxWidth("40%");
 

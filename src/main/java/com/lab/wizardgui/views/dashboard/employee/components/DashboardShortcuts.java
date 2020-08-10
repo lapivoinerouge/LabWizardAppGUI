@@ -11,10 +11,10 @@ public class DashboardShortcuts extends VerticalLayout {
 
     public DashboardShortcuts() {
 
-        EmployeeTile patients = new EmployeeTile("BAZA PACJENTÓW", new Icon(VaadinIcon.USERS), e -> getUI().ifPresent(ui -> ui.navigate("employee/patients")));
-        EmployeeTile registration = new EmployeeTile("REJESTRACJA BADANIA", new Icon(VaadinIcon.CLIPBOARD_CROSS), e -> getUI().ifPresent(ui -> ui.navigate("employee/registration")));
-        EmployeeTile laboratory = new EmployeeTile("WYDAWANIE WYNIKÓW", new Icon(VaadinIcon.FLASK), e -> getUI().ifPresent(ui -> ui.navigate("employee/laboratory")));
-        EmployeeTile results = new EmployeeTile("BAZA WYNIKÓW", new Icon(VaadinIcon.CLIPBOARD_CHECK), e -> getUI().ifPresent(ui -> ui.navigate("employee/results")));
+        EmployeeTile patients = new EmployeeTile("PATIENTS", new Icon(VaadinIcon.USERS), e -> getUI().ifPresent(ui -> ui.navigate("employee/patients")));
+        EmployeeTile registration = new EmployeeTile("TESTS", new Icon(VaadinIcon.CLIPBOARD_CROSS), e -> getUI().ifPresent(ui -> ui.navigate("employee/registration")));
+        EmployeeTile laboratory = new EmployeeTile("LABORATORY", new Icon(VaadinIcon.FLASK), e -> getUI().ifPresent(ui -> ui.navigate("employee/laboratory")));
+        EmployeeTile results = new EmployeeTile("RESULTS", new Icon(VaadinIcon.CLIPBOARD_CHECK), e -> getUI().ifPresent(ui -> ui.navigate("employee/results")));
 
         patients.getStyle().set("background-image", "url(https://images.pexels.com/photos/261152/pexels-photo-261152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)");
         registration.getStyle().set("background-image", "url(https://images.pexels.com/photos/1122864/pexels-photo-1122864.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)");

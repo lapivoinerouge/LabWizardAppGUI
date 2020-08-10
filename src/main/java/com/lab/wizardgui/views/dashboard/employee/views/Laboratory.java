@@ -32,14 +32,14 @@ public class Laboratory extends VerticalLayout {
         grid.addThemeVariants(GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
 
         grid.addColumn(UndoneResultDto::getId).setHeader("id").setWidth("20px");
-        grid.addColumn(UndoneResultDto::getFirstname).setHeader("imię");
-        grid.addColumn(UndoneResultDto::getLastname).setHeader("nazwisko");
+        grid.addColumn(UndoneResultDto::getFirstname).setHeader("firstname");
+        grid.addColumn(UndoneResultDto::getLastname).setHeader("lastname");
         grid.addColumn(UndoneResultDto::getPesel).setHeader("pesel");
-        grid.addColumn(UndoneResultDto::getMaterial).setHeader("materiał").setWidth("110px");
-        grid.addColumn(UndoneResultDto::getReceiveDate).setHeader("pobrano").setWidth("80px");
+        grid.addColumn(UndoneResultDto::getMaterial).setHeader("material").setWidth("110px");
+        grid.addColumn(UndoneResultDto::getReceiveDate).setHeader("received ").setWidth("80px");
         refresh(undoneResultClient);
 
-        base.add(new H2("Laboratorium"), new H3("Wybierz zlecenie z listy:"), grid);
+        base.add(new H2("Laboratory"), new H3("Select an order:"), grid);
 
         HorizontalLayout layout = new HorizontalLayout();
 
@@ -56,14 +56,14 @@ public class Laboratory extends VerticalLayout {
     }
 
     public void resultAdded() {
-        Notification notification = new Notification("Wynik został pomyślnie zapisany w bazie danych.", 3000);
+        Notification notification = new Notification("Result has been released.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();
     }
 
     public void resultDeleted() {
-        Notification notification = new Notification("Wynik został usunięty", 3000);
+        Notification notification = new Notification("Test has been deleted.", 3000);
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         notification.setPosition(Notification.Position.MIDDLE);
         notification.open();
