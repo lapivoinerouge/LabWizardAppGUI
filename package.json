@@ -16,7 +16,7 @@
   "devDependencies": {
     "compression-webpack-plugin": "^4.0.1",
     "copy-webpack-plugin": "^6.0.3",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "raw-loader": "3.0.0",
     "webpack": "^4.44.1",
     "webpack-babel-multi-target-plugin": "2.1.0",
